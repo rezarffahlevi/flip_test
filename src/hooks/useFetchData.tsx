@@ -109,8 +109,8 @@ const fetchDataHooks = async ({
 
     const response = await fetch(BASE_URL +  urlPath + objectToQueryParams(queryParams), options);
     let data = await response.json();
-    console.log(urlPath, response);
-    console.log(data);
+    // console.log(urlPath, response);
+    // console.log(data);
 
     if (response.status === 401) {
       throw {

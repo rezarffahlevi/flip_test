@@ -1,9 +1,26 @@
 import useFetchData from '../useFetchData';
-export const useGetTrasaction = () => {
-  let {fetchData, data, error, loading, isError, message, status} = useFetchData({urlPath: 'frontend-test'});
+export declare interface TransactionItem {
+  id: string;
+  amount: number;
+  unique_code: number;
+  status: string;
+  sender_bank: string;
+  account_number: string;
+  beneficiary_name: string;
+  beneficiary_bank: string;
+  remark: string;
+  created_at: string;
+  completed_at: string;
+  fee: number;
+}
 
+export const useGetTrasaction = () => {
+  const {fetchData, data, error, loading, isError, message, status} =
+    useFetchData({urlPath: 'frontend-test'});
+
+  let result: TransactionItem[] = [];
   if (data) {
-    data = Object.values(data);
+    result = Object.values(data);
   }
 
   return {
@@ -12,7 +29,7 @@ export const useGetTrasaction = () => {
     isError,
     message,
     status,
-    data: data,
+    data: result,
     fetchData,
   };
 };
