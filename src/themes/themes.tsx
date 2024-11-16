@@ -5,7 +5,7 @@ export const AppThemes = {
         SM: 6,
         MD: 10,
         LG: 14,
-        XL: 16,
+        XL: 20,
         BOTTOM_SCROLL: 100
     },
 }

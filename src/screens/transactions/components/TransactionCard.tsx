@@ -8,6 +8,7 @@ import {formatDate} from '../../../utils/dateFormat';
 import FontSize from '../../../themes/fontSize';
 import {FontWeight} from '../../../themes/fontWeight';
 import { AppThemes } from '../../../themes/themes';
+import { TransferLabel } from './TransferLabel';
 
 type Props = {
   senderBank: string;
@@ -54,11 +55,7 @@ export const TransactionCard: FC<Props> = ({
     <Pressable style={styles.container} onPress={onPress} disabled={disabled}>
       <View style={[styles.flagStatus, status == 'SUCCESS' && styles.flagSuccess] } />
       <View style={styles.wrapper}>
-        <Text style={[FontSize.h5, FontWeight.bold]}>
-          {titleCase(senderBank)}{' '}
-          <Image source={AppAssets.ic_right} style={styles.iconTf} />{' '}
-          {titleCase(beneficiaryBank)}
-        </Text>
+        <TransferLabel senderBank={senderBank} beneficiaryBank={beneficiaryBank} />
         <Text style={styles.name}>{beneficiaryName?.toUpperCase()}</Text>
         <View style={AppStyles.row}>
           <Text adjustsFontSizeToFit>{currencyFormat(amount)}</Text>
