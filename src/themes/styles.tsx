@@ -12,6 +12,9 @@ export const AppStyles = StyleSheet.create({
   primary: {
     color: AppColors.primary,
   },
+  secondary: {
+    color: AppColors.secondary,
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {
   Alert,
   Clipboard,
@@ -21,7 +21,7 @@ import {TransferLabel} from './components/TransferLabel';
 import {TransactionItem} from './TransactionScreen';
 import {InfoLabel} from './components/InfoLabel';
 import {currencyFormat} from '../../utils/stringUtils';
-import {formatDate} from '../../utils/dateFormat';
+import {formatDate, formatDateTime} from '../../utils/dateFormat';
 
 type Props = StaticScreenProps<{
   transaction: TransactionItem;
@@ -31,13 +31,18 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
   const {transaction} = route.params;
   const navigation = useNavigation();
   const [expand, setExpand] = useState(true);
-  if (transaction.status == 'SUCCESS') {
-    navigation.setOptions({
-      headerStyle: {backgroundColor: AppColors.secondary},
-    });
-  }
+
+  useEffect(() => {
+    if (transaction.status == 'SUCCESS') {
+      navigation.setOptions({
+        headerStyle: {backgroundColor: AppColors.secondary},
+      });
+    }
+  }, []);
 
   const _onCopyId = () => {
+    // for demo purposes, because for this test I don't add any library except for navigation.
+    // recomend to replace with @react-native-clipboard/clipboard
     Clipboard.setString(transaction.id);
     let msg = 'ID Transaksi berhasil disalin';
     if (Platform.OS == 'android') {
@@ -48,7 +53,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
   };
 
   const toggleAccordion = () => setExpand(!expand);
-
+  const isSuccess = transaction.status == 'SUCCESS';
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -100,6 +105,21 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
               title={'WAKTU DIBUAT'}
               value={formatDate(transaction.created_at)}
             />
+            <InfoLabel
+              title={'BIAYA ADMIN'}
+              value={currencyFormat(transaction.fee)}
+            />
+          </View>
+          <View style={styles.content}>
+            <InfoLabel
+              title={'STATUS'}
+              value={isSuccess ? 'Berhasil' : 'Pengecekan'}
+              valueStyle={[FontWeight.bold]}
+            />
+            {isSuccess && (<InfoLabel
+              title={'WAKTU TRANSFER'}
+              value={formatDateTime(transaction.completed_at)}
+            />)}
           </View>
         </View>
       )}
