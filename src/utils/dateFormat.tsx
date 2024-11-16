@@ -14,18 +14,10 @@ const months = [
 ]
 
 export function formatDate(date: string) {
-    let parseDate = date.split('-').join('/')
-    let d = new Date(parseDate),
-        day = '' + d.getDate(),
-        month = '' + months[d.getMonth()],
-        year = d.getFullYear();
+    let newDate = new Date(date),
+        day = '' + newDate.getDate(),
+        month = '' + months[newDate.getMonth()],
+        year = newDate.getFullYear();
 
     return `${day} ${month} ${year}`;
-}
-
-export function dateToMilliseconds(date: string) {
-    let parseDate = date.split('-').join('/')
-    let d = new Date(parseDate)
-
-    return d.getTime();
 }

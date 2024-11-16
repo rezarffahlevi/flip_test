@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { AppColors } from './colors';
+import {AppColors} from './colors';
 
 export const AppStyles = StyleSheet.create({
   container: {
@@ -9,11 +9,18 @@ export const AppStyles = StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
   },
-  textInput: {
-    color: AppColors.grey,
-  },
   primary: {
     color: AppColors.primary,
   },
-  content: {},
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
 });
