@@ -26,7 +26,7 @@ export function objectToQueryParams(
   params?: Record<string, any> | undefined,
 ): string {
   if (params)
-    return Object.entries(params)
+    return `?`+Object.entries(params)
       .filter(([_, value]) => value !== undefined && value !== null) // Skip undefined or null values
       .map(
         ([key, value]) =>
