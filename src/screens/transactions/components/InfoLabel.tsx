@@ -1,18 +1,17 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {titleCase} from '../../../utils/stringUtils';
+import {StyleSheet, Text, View} from 'react-native';
 import FontSize from '../../../themes/fontSize';
-import {AppAssets} from '../../../assets/assets';
 import {FontWeight} from '../../../themes/fontWeight';
 
 type Props = {
   title: string;
   value: string;
+  valueStyle?: React.CSSProperties | {};
 };
-export const InfoLabel = ({title, value}: Props) => {
+export const InfoLabel = ({title, value, valueStyle}: Props) => {
   return (
     <View style={styles.container}>
       <Text style={[FontSize.h6, FontWeight.bold]}>{title}</Text>
-      <Text style={[FontSize.h6, FontWeight.regular]}>{value}</Text>
+      <Text style={[FontSize.h6, FontWeight.regular, valueStyle]}>{value}</Text>
     </View>
   );
 };

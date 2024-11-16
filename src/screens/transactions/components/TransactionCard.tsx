@@ -1,14 +1,12 @@
 import {FC} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {AppColors} from '../../../themes/colors';
-import {AppAssets} from '../../../assets/assets';
-import {titleCase, currencyFormat} from '../../../utils/stringUtils';
+import {currencyFormat} from '../../../utils/stringUtils';
 import {AppStyles} from '../../../themes/styles';
 import {formatDate} from '../../../utils/dateFormat';
-import FontSize from '../../../themes/fontSize';
-import {FontWeight} from '../../../themes/fontWeight';
 import { AppThemes } from '../../../themes/themes';
 import { TransferLabel } from './TransferLabel';
+import { StatusLabel } from './StatusLabel';
 
 type Props = {
   senderBank: string;
@@ -31,26 +29,6 @@ export const TransactionCard: FC<Props> = ({
   onPress,
   disabled,
 }) => {
-  const _labelStatus = (status: string) => {
-    switch (status) {
-      case 'SUCCESS':
-        return styles.successText;
-      default:
-        return styles.pendingText;
-        break;
-    }
-  };
-
-  const _statusWording = (status: string) => {
-    switch (status) {
-      case 'SUCCESS':
-        return 'Berhasil';
-      default:
-        return 'Pengecekan';
-        break;
-    }
-  };
-
   return (
     <Pressable style={styles.container} onPress={onPress} disabled={disabled}>
       <View style={[styles.flagStatus, status == 'SUCCESS' && styles.flagSuccess] } />
@@ -63,7 +41,7 @@ export const TransactionCard: FC<Props> = ({
           <Text>{formatDate(date)}</Text>
         </View>
       </View>
-      <Text style={_labelStatus(status)}>{_statusWording(status)}</Text>
+      <StatusLabel status={status} />
     </Pressable>
   );
 };
@@ -107,28 +85,5 @@ const styles = StyleSheet.create({
   },
   name: {
     marginBlock: AppThemes.SPACE.XS,
-  },
-  successText: {
-    borderRadius: AppThemes.SPACE.SM,
-    paddingHorizontal: AppThemes.SPACE.MD,
-    paddingVertical: AppThemes.SPACE.SM,
-    backgroundColor: AppColors.secondary,
-    color: AppColors.white,
-    fontWeight: 'bold',
-    marginRight: AppThemes.SPACE.MD,
-    position: 'absolute',
-    right: 0,
-  },
-  pendingText: {
-    borderColor: AppColors.primary,
-    borderWidth: 2,
-    borderRadius: AppThemes.SPACE.SM,
-    paddingHorizontal: AppThemes.SPACE.MD,
-    paddingVertical: AppThemes.SPACE.XS,
-    color: AppColors.black,
-    fontWeight: 'bold',
-    marginRight: AppThemes.SPACE.MD,
-    position: 'absolute',
-    right: 0,
   },
 });
