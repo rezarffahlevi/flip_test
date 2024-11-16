@@ -1,13 +1,13 @@
 import {FC} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import {AppColors} from '../../themes/colors';
-import {AppAssets} from '../../assets/assets';
-import {titleCase, currencyFormat} from '../../utils/stringUtils';
-import {AppStyles} from '../../themes/styles';
-import {formatDate} from '../../utils/dateFormat';
-import FontSize from '../../themes/fontSize';
-import {FontWeight} from '../../themes/fontWeight';
-import { AppThemes } from '../../themes/themes';
+import {AppColors} from '../../../themes/colors';
+import {AppAssets} from '../../../assets/assets';
+import {titleCase, currencyFormat} from '../../../utils/stringUtils';
+import {AppStyles} from '../../../themes/styles';
+import {formatDate} from '../../../utils/dateFormat';
+import FontSize from '../../../themes/fontSize';
+import {FontWeight} from '../../../themes/fontWeight';
+import { AppThemes } from '../../../themes/themes';
 
 type Props = {
   senderBank: string;
@@ -52,7 +52,7 @@ export const TransactionCard: FC<Props> = ({
 
   return (
     <Pressable style={styles.container} onPress={onPress} disabled={disabled}>
-      <View style={styles.flagStatus} />
+      <View style={[styles.flagStatus, status == 'SUCCESS' && styles.flagSuccess] } />
       <View style={styles.wrapper}>
         <Text style={[FontSize.h5, FontWeight.bold]}>
           {titleCase(senderBank)}{' '}
@@ -93,6 +93,9 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     bottom: 0,
+  },
+  flagSuccess: {
+    backgroundColor: AppColors.secondary,
   },
   iconTf: {
     width: 18,

@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import {TransactionCard} from '../../components/card/TransactionCard';
+import {TransactionCard} from './components/TransactionCard';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {Searchbar} from './components/Searchbar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
