@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     padding: AppThemes.SPACE.MD,
   },
   containerItem: {
-    paddingTop: AppThemes.SPACE.MD,
+    paddingTop: 0,
     paddingBottom: AppThemes.SPACE.BOTTOM_SCROLL,
   },
   listFooter: {

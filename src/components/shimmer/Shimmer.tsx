@@ -61,7 +61,7 @@ const Shimmer: React.FC<ShimmerProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 8,
+    paddingTop: 0,
   },
   card: {
     backgroundColor: '#e0e0e0', // Base shimmer background

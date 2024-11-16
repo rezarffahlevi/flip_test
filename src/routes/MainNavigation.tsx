@@ -19,7 +19,7 @@ const RootStack = createNativeStackNavigator({
     Transaction: {
       screen: TransactionScreen,
       options: {
-        title: 'Transaksi'
+        headerShown: false
       }
     },
     TransactionDetail: {
