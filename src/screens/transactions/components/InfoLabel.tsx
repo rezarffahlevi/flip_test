@@ -9,8 +9,8 @@ type Props = {
 const InfoLabel = ({title, value, valueStyle}: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={[AppThemes.fontSize.h5, AppThemes.fontWeight.bold]}>{title}</Text>
-      <Text style={[AppThemes.fontSize.h5, AppThemes.fontWeight.regular, valueStyle]}>{value}</Text>
+      <Text style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}>{title}</Text>
+      <Text style={[AppThemes.fontSize.h6, AppThemes.fontWeight.regular, valueStyle]}>{value}</Text>
     </View>
   );
 };

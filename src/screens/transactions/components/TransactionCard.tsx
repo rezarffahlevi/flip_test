@@ -39,15 +39,15 @@ const TransactionCard: FC<Props> = ({
           senderBank={senderBank}
           beneficiaryBank={beneficiaryBank}
         />
-        <Text style={[AppThemes.fontSize.h4, styles.name]}>
+        <Text style={[AppThemes.fontSize.h5, styles.name]}>
           {beneficiaryName?.toUpperCase()}
         </Text>
         <View style={AppStyles.row}>
-          <Text adjustsFontSizeToFit style={[AppThemes.fontSize.h5]}>
+          <Text adjustsFontSizeToFit style={[AppThemes.fontSize.h6]}>
             {currencyFormat(amount)}
           </Text>
           <View style={styles.dot} />
-          <Text style={[AppThemes.fontSize.h5]}>{formatDate(date)}</Text>
+          <Text style={[AppThemes.fontSize.h6]}>{formatDate(date)}</Text>
         </View>
       </View>
       <StatusLabel status={status} />

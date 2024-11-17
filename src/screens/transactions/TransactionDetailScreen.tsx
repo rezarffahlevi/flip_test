@@ -57,7 +57,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
     <View style={styles.container}>
       <View style={styles.card}>
         <Text
-          style={[AppThemes.fontSize.h5, AppThemes.fontWeight.bold]}
+          style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}
           adjustsFontSizeToFit>
           ID TRANSAKSI: #{transaction.id}
         </Text>
@@ -68,14 +68,14 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
       <View
         style={[styles.card, AppStyles.row, {justifyContent: 'space-between'}]}>
         <Text
-          style={[AppThemes.fontSize.h5, AppThemes.fontWeight.bold]}
+          style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}
           adjustsFontSizeToFit>
           DETAIL TRANSAKSI
         </Text>
         <TouchableOpacity onPress={toggleAccordion} style={styles.toggle}>
           <Text
             style={[
-              AppThemes.fontSize.h5,
+              AppThemes.fontSize.h6,
               AppStyles.primary,
               AppThemes.fontWeight.semibold,
             ]}
