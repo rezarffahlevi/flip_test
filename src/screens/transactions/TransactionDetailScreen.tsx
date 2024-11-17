@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useMemo, useState} from 'react';
 import {
   Alert,
   Clipboard,
@@ -13,7 +13,7 @@ import {
 import {StaticScreenProps, useNavigation} from '@react-navigation/native';
 import AppThemes from '@themes/themes';
 import AppAssets from '@assets/assets';
-import AppStyles  from '@themes/styles';
+import AppStyles from '@themes/styles';
 import {TransactionItem} from './TransactionScreen';
 import {currencyFormat} from '@utils/stringUtils';
 import {formatDate, formatDateTime} from '@utils/dateFormat';
@@ -37,9 +37,9 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
         headerStyle: {backgroundColor: AppThemes.colors.secondary},
       });
     }
-  }, []);
+  }, [transaction.status]);
 
-  const _onCopyId = () => {
+  const _onCopyId = useCallback(() => {
     // for demo purposes, because for this test I don't add any library except for navigation.
     // recomend to replace with @react-native-clipboard/clipboard
     Clipboard.setString(transaction.id);
@@ -49,16 +49,18 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
     } else {
       Alert.alert(msg);
     }
-  };
+  }, []);
 
-  const toggleAccordion = () => setExpand(!expand);
-  const isSuccess = transaction.status == 'SUCCESS';
+  const toggleAccordion = useCallback(() => setExpand(!expand), [expand]);
+  const isSuccess = useMemo(
+    () => transaction.status == 'SUCCESS',
+    [transaction.status],
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Text
-          style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}
-         >
+        <Text style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}>
           ID TRANSAKSI: #{transaction.id}
         </Text>
         <TouchableOpacity onPress={_onCopyId}>
@@ -67,9 +69,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
       </View>
       <View
         style={[styles.card, AppStyles.row, {justifyContent: 'space-between'}]}>
-        <Text
-          style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}
-         >
+        <Text style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}>
           DETAIL TRANSAKSI
         </Text>
         <TouchableOpacity onPress={toggleAccordion} style={styles.toggle}>
@@ -78,8 +78,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
               AppThemes.fontSize.h6,
               AppStyles.primary,
               AppThemes.fontWeight.semibold,
-            ]}
-           >
+            ]}>
             {expand ? 'Tutup' : 'Lihat'}
           </Text>
         </TouchableOpacity>
