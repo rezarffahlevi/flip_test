@@ -1,14 +1,15 @@
-import {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import {TransactionCard} from './components/TransactionCard';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
-import {Searchbar} from './components/Searchbar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {SortModal} from './components/SortModal';
-import Shimmer from '../../components/shimmer/Shimmer';
-import {SORT_BY} from '../../utils/constants';
-import {AppThemes} from '../../themes/themes';
-import useFetchData from '../../hooks/useFetchData';
+import {SORT_BY} from '@utils/constants';
+import AppThemes from '@themes/themes';
+import useFetchData from '@hooks/useFetchData';
+
+const Shimmer = React.lazy(() => import('@components/shimmer/Shimmer'));
+const SortModal = React.lazy(() => import('./components/SortModal'));
+const Searchbar = React.lazy(() => import('./components/Searchbar'));
+const TransactionCard = React.lazy(() => import('./components/TransactionCard'));
 
 type Props = {};
 export declare interface TransactionItem {
@@ -170,11 +171,11 @@ export default TransactionScreen;
 
 const styles = StyleSheet.create({
   container: {
-    padding: AppThemes.SPACE.MD,
+    padding: AppThemes.space.MD,
   },
   containerItem: {
     paddingTop: 0,
-    paddingBottom: AppThemes.SPACE.BOTTOM_SCROLL,
+    paddingBottom: AppThemes.space.BOTTOM_SCROLL,
   },
   listFooter: {
     padding: 0,

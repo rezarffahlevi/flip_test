@@ -1,12 +1,11 @@
 import {StyleSheet, Text} from 'react-native';
-import { AppThemes } from '../../../themes/themes';
-import { AppColors } from '../../../themes/colors';
+import AppThemes from '@themes/themes';
 
 type Props = {
   status: string;
   style?: React.CSSProperties | {},
 };
-export const StatusLabel = ({status, style}: Props) => {
+const StatusLabel = ({status, style}: Props) => {
   const _labelStatus = (status: string) => {
     switch (status) {
       case 'SUCCESS':
@@ -27,30 +26,32 @@ export const StatusLabel = ({status, style}: Props) => {
     }
   };
 
-  return <Text style={[_labelStatus(status), style]} adjustsFontSizeToFit>{_statusWording(status)}</Text>;
+  return <Text style={[_labelStatus(status), style]}>{_statusWording(status)}</Text>;
 };
+
+export default StatusLabel;
 
 const styles = StyleSheet.create({
   successText: {
-    borderRadius: AppThemes.SPACE.SM,
-    paddingHorizontal: AppThemes.SPACE.MD,
-    paddingVertical: AppThemes.SPACE.XXS,
-    backgroundColor: AppColors.secondary,
-    color: AppColors.white,
+    borderRadius: AppThemes.space.SM,
+    paddingHorizontal: AppThemes.space.MD,
+    paddingVertical: AppThemes.space.XXS,
+    backgroundColor: AppThemes.colors.secondary,
+    color: AppThemes.colors.white,
     fontWeight: 'bold',
-    marginRight: AppThemes.SPACE.MD,
+    marginRight: AppThemes.space.MD,
     position: 'absolute',
     right: 0,
   },
   pendingText: {
-    borderColor: AppColors.primary,
+    borderColor: AppThemes.colors.primary,
     borderWidth: 2,
-    borderRadius: AppThemes.SPACE.SM,
-    paddingHorizontal: AppThemes.SPACE.MD,
-    paddingVertical: AppThemes.SPACE.XXS,
-    color: AppColors.black,
+    borderRadius: AppThemes.space.SM,
+    paddingHorizontal: AppThemes.space.MD,
+    paddingVertical: AppThemes.space.XXS,
+    color: AppThemes.colors.black,
     fontWeight: 'bold',
-    marginRight: AppThemes.SPACE.MD,
+    marginRight: AppThemes.space.MD,
     position: 'absolute',
     right: 0,
   },

@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
   Alert,
   Clipboard,
@@ -10,19 +10,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {AppColors} from '../../themes/colors';
 import {StaticScreenProps, useNavigation} from '@react-navigation/native';
-import {AppThemes} from '../../themes/themes';
-import FontSize from '../../themes/fontSize';
-import {FontWeight} from '../../themes/fontWeight';
-import {AppAssets} from '../../assets/assets';
-import {AppStyles} from '../../themes/styles';
-import {TransferLabel} from './components/TransferLabel';
+import AppThemes from '@themes/themes';
+import AppAssets from '@assets/assets';
+import AppStyles  from '@themes/styles';
 import {TransactionItem} from './TransactionScreen';
-import {InfoLabel} from './components/InfoLabel';
-import {currencyFormat} from '../../utils/stringUtils';
-import {formatDate, formatDateTime} from '../../utils/dateFormat';
-import {scaleWidth} from '../../utils/responsive';
+import {currencyFormat} from '@utils/stringUtils';
+import {formatDate, formatDateTime} from '@utils/dateFormat';
+import {scaleWidth} from '@utils/responsive';
+
+const TransferLabel = React.lazy(() => import('./components/TransferLabel'));
+const InfoLabel = React.lazy(() => import('./components/InfoLabel'));
 
 type Props = StaticScreenProps<{
   transaction: TransactionItem;
@@ -36,7 +34,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
   useEffect(() => {
     if (transaction.status == 'SUCCESS') {
       navigation.setOptions({
-        headerStyle: {backgroundColor: AppColors.secondary},
+        headerStyle: {backgroundColor: AppThemes.colors.secondary},
       });
     }
   }, []);
@@ -58,7 +56,9 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Text style={[FontSize.h5, FontWeight.bold]} adjustsFontSizeToFit>
+        <Text
+          style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}
+         >
           ID TRANSAKSI: #{transaction.id}
         </Text>
         <TouchableOpacity onPress={_onCopyId}>
@@ -67,13 +67,19 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
       </View>
       <View
         style={[styles.card, AppStyles.row, {justifyContent: 'space-between'}]}>
-        <Text style={[FontSize.h5, FontWeight.bold]} adjustsFontSizeToFit>
+        <Text
+          style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}
+         >
           DETAIL TRANSAKSI
         </Text>
         <TouchableOpacity onPress={toggleAccordion} style={styles.toggle}>
           <Text
-            style={[FontSize.h5, AppStyles.primary, FontWeight.semibold]}
-            adjustsFontSizeToFit>
+            style={[
+              AppThemes.fontSize.h6,
+              AppStyles.primary,
+              AppThemes.fontWeight.semibold,
+            ]}
+           >
             {expand ? 'Tutup' : 'Lihat'}
           </Text>
         </TouchableOpacity>
@@ -115,7 +121,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
             <InfoLabel
               title={'STATUS'}
               value={isSuccess ? 'Berhasil' : 'Pengecekan'}
-              // valueStyle={[FontWeight.bold]}
+              // valueStyle={[AppThemes.fontWeight.bold]}
             />
             {isSuccess && (
               <InfoLabel
@@ -134,31 +140,31 @@ export default TransactionDetailScreen;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: AppThemes.SPACE.MD,
+    paddingVertical: AppThemes.space.MD,
   },
   card: {
-    backgroundColor: AppColors.white,
-    padding: AppThemes.SPACE.XL,
+    backgroundColor: AppThemes.colors.white,
+    padding: AppThemes.space.XL,
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderColor: '#ddd',
   },
   wrapper: {
-    backgroundColor: AppColors.white,
-    padding: AppThemes.SPACE.XL,
+    backgroundColor: AppThemes.colors.white,
+    padding: AppThemes.space.XL,
   },
   iconCopy: {
     width: scaleWidth(18),
     height: scaleWidth(18),
-    tintColor: AppColors.primary,
-    marginLeft: AppThemes.SPACE.SM,
+    tintColor: AppThemes.colors.primary,
+    marginLeft: AppThemes.space.SM,
   },
   content: {
     flexDirection: 'row',
-    marginVertical: AppThemes.SPACE.MD,
+    marginVertical: AppThemes.space.MD,
   },
   toggle: {
-    // paddingBlock: AppThemes.SPACE.MD,
-    paddingLeft: AppThemes.SPACE.MD,
+    // paddingBlock: AppThemes.space.MD,
+    paddingLeft: AppThemes.space.MD,
   },
 });

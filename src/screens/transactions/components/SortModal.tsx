@@ -1,13 +1,9 @@
-import {
-  Modal,
-  Pressable,
-  StyleSheet,
-  View,
-} from 'react-native';
-import {AppColors} from '../../../themes/colors';
-import {FC} from 'react';
-import { Radio } from '../../../components/forms/Radio';
-import { AppThemes } from '../../../themes/themes';
+import React, {FC} from 'react';
+import {Modal, Pressable, StyleSheet, View} from 'react-native';
+import AppThemes from '@themes/themes';
+
+const Radio = React.lazy(() => import('@components/forms/Radio'));
+
 type Props = {
   visible: boolean;
   selected: string | null;
@@ -16,7 +12,7 @@ type Props = {
   data: {label: string; value: string | number}[];
 };
 
-export const SortModal: FC<Props> = ({
+const SortModal: FC<Props> = ({
   visible,
   data,
   selected,
@@ -24,26 +20,28 @@ export const SortModal: FC<Props> = ({
   onClose,
 }: Props) => {
   return (
-    <Modal transparent visible={visible} animationType='fade'>
-      <View
-        style={styles.container}>
-        <Pressable
-          style={styles.backdrop}
-          onPress={onClose}
-        />
-        <View
-          style={styles.card}>
+    <Modal transparent visible={visible} animationType="fade">
+      <View style={styles.container}>
+        <Pressable style={styles.backdrop} onPress={onClose} />
+        <View style={styles.card}>
           {data.map((item: any, i: number) => (
-            <Radio key={`sort-${i}`} label={item.label} selected={selected == item.value} onPress={() => {
-              onSelected(item.value);
-              onClose();
-            }} />
+            <Radio
+              key={`sort-${i}`}
+              label={item.label}
+              selected={selected == item.value}
+              onPress={() => {
+                onSelected(item.value);
+                onClose();
+              }}
+            />
           ))}
         </View>
       </View>
     </Modal>
   );
 };
+
+export default SortModal;
 
 const styles = StyleSheet.create({
   container: {
@@ -63,11 +61,11 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   card: {
-    backgroundColor: AppColors.white,
+    backgroundColor: AppThemes.colors.white,
     width: '80%',
     minHeight: 20,
     borderRadius: 4,
     paddingHorizontal: 20,
-    paddingVertical: AppThemes.SPACE.MD,
-  }
+    paddingVertical: AppThemes.space.MD,
+  },
 });
