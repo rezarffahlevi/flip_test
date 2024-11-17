@@ -58,7 +58,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
       <View style={styles.card}>
         <Text
           style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}
-          adjustsFontSizeToFit>
+         >
           ID TRANSAKSI: #{transaction.id}
         </Text>
         <TouchableOpacity onPress={_onCopyId}>
@@ -69,7 +69,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
         style={[styles.card, AppStyles.row, {justifyContent: 'space-between'}]}>
         <Text
           style={[AppThemes.fontSize.h6, AppThemes.fontWeight.bold]}
-          adjustsFontSizeToFit>
+         >
           DETAIL TRANSAKSI
         </Text>
         <TouchableOpacity onPress={toggleAccordion} style={styles.toggle}>
@@ -79,7 +79,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
               AppStyles.primary,
               AppThemes.fontWeight.semibold,
             ]}
-            adjustsFontSizeToFit>
+           >
             {expand ? 'Tutup' : 'Lihat'}
           </Text>
         </TouchableOpacity>

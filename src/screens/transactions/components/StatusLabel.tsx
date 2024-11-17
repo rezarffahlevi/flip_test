@@ -26,7 +26,7 @@ const StatusLabel = ({status, style}: Props) => {
     }
   };
 
-  return <Text style={[_labelStatus(status), style]} adjustsFontSizeToFit>{_statusWording(status)}</Text>;
+  return <Text style={[_labelStatus(status), style]}>{_statusWording(status)}</Text>;
 };
 
 export default StatusLabel;

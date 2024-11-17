@@ -43,7 +43,7 @@ const TransactionCard: FC<Props> = ({
           {beneficiaryName?.toUpperCase()}
         </Text>
         <View style={AppStyles.row}>
-          <Text adjustsFontSizeToFit style={[AppThemes.fontSize.h6]}>
+          <Text style={[AppThemes.fontSize.h6]}>
             {currencyFormat(amount)}
           </Text>
           <View style={styles.dot} />

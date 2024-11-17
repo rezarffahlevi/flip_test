@@ -14,13 +14,13 @@ const TransferLabel = ({senderBank, beneficiaryBank}: Props) => {
     <View style={AppStyles.row}>
       <Text
         style={[AppThemes.fontSize.h5, AppThemes.fontWeight.bold]}
-        adjustsFontSizeToFit>
+       >
         {titleCase(senderBank)}
       </Text>
       <Image source={AppAssets.ic_right} style={styles.iconTf} />
       <Text
         style={[AppThemes.fontSize.h5, AppThemes.fontWeight.bold]}
-        adjustsFontSizeToFit>
+       >
         {titleCase(beneficiaryBank)}
       </Text>
     </View>
