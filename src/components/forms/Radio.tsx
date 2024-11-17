@@ -1,5 +1,5 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {FC} from 'react';
+import React, {FC} from 'react';
 import AppThemes from '@themes/themes';
 
 type Props = {
@@ -10,12 +10,16 @@ type Props = {
 const Radio: FC<Props> = ({label, selected, onPress}: Props) => {
   return (
     <Pressable style={styles.radioContainer} onPress={onPress}>
-      <View style={styles.radioIcon}>{selected && (<View style={styles.radioIconSelected}/>)}</View>
+      <View style={styles.radioIcon}>
+        {selected && <View style={styles.radioIconSelected} />}
+      </View>
       <Text>{label}</Text>
     </Pressable>
   );
 };
-export default Radio;
+
+export default React.memo(Radio);
+
 const styles = StyleSheet.create({
   radioContainer: {
     flexDirection: 'row',

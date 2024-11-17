@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Shimmer;
+export default React.memo(Shimmer);

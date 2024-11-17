@@ -41,7 +41,7 @@ const SortModal: FC<Props> = ({
   );
 };
 
-export default SortModal;
+export default React.memo(SortModal);
 
 const styles = StyleSheet.create({
   container: {

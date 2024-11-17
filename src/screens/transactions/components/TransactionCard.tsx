@@ -55,7 +55,7 @@ const TransactionCard: FC<Props> = ({
   );
 };
 
-export default TransactionCard;
+export default React.memo(TransactionCard);
 
 const styles = StyleSheet.create({
   container: {

@@ -1,5 +1,6 @@
 import {StyleSheet, Text} from 'react-native';
 import AppThemes from '@themes/themes';
+import React from 'react';
 
 type Props = {
   status: string;
@@ -29,7 +30,7 @@ const StatusLabel = ({status, style}: Props) => {
   return <Text style={[_labelStatus(status), style]}>{_statusWording(status)}</Text>;
 };
 
-export default StatusLabel;
+export default React.memo(StatusLabel);
 
 const styles = StyleSheet.create({
   successText: {

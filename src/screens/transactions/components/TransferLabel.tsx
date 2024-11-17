@@ -4,6 +4,7 @@ import AppAssets from '@assets/assets';
 import AppThemes from '@themes/themes';
 import {scaleWidth} from '@utils/responsive';
 import AppStyles  from '@themes/styles';
+import React from 'react';
 
 type Props = {
   senderBank: string;
@@ -26,7 +27,7 @@ const TransferLabel = ({senderBank, beneficiaryBank}: Props) => {
     </View>
   );
 };
-export default TransferLabel;
+export default React.memo(TransferLabel);
 
 const styles = StyleSheet.create({
   iconTf: {

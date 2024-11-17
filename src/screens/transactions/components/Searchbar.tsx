@@ -1,5 +1,5 @@
 
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {
   Image,
   Pressable,
@@ -42,7 +42,7 @@ const Searchbar: FC<Props> = ({onPressSorting, onSearch, sortBy, keyword}: Props
   );
 };
 
-export default Searchbar;
+export default React.memo(Searchbar);
 
 const styles = StyleSheet.create({
   searchContainer: {
