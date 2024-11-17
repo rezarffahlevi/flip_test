@@ -6,6 +6,14 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  *
  * @type {import('metro-config').MetroConfig}
  */
-const config = {};
+const config = {
+    transformer: {
+        babelTransformerPath: require.resolve('react-native-typescript-transformer'),
+    },
+    resolver: {
+        assetExts: assetExts.filter(ext => ext !== 'ts' && ext !== 'tsx'),
+        sourceExts: [...sourceExts, 'ts', 'tsx'],
+    },
+};
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
