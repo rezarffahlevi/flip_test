@@ -22,6 +22,7 @@ import {TransactionItem} from './TransactionScreen';
 import {InfoLabel} from './components/InfoLabel';
 import {currencyFormat} from '../../utils/stringUtils';
 import {formatDate, formatDateTime} from '../../utils/dateFormat';
+import {scaleWidth} from '../../utils/responsive';
 
 type Props = StaticScreenProps<{
   transaction: TransactionItem;
@@ -57,7 +58,7 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Text style={[FontSize.h7, FontWeight.bold]} adjustsFontSizeToFit>
+        <Text style={[FontSize.h5, FontWeight.bold]} adjustsFontSizeToFit>
           ID TRANSAKSI: #{transaction.id}
         </Text>
         <TouchableOpacity onPress={_onCopyId}>
@@ -66,12 +67,12 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
       </View>
       <View
         style={[styles.card, AppStyles.row, {justifyContent: 'space-between'}]}>
-        <Text style={[FontSize.h7, FontWeight.bold]} adjustsFontSizeToFit>
+        <Text style={[FontSize.h5, FontWeight.bold]} adjustsFontSizeToFit>
           DETAIL TRANSAKSI
         </Text>
-        <TouchableOpacity onPress={toggleAccordion}>
+        <TouchableOpacity onPress={toggleAccordion} style={styles.toggle}>
           <Text
-            style={[FontSize.h7, AppStyles.primary, FontWeight.semibold]}
+            style={[FontSize.h5, AppStyles.primary, FontWeight.semibold]}
             adjustsFontSizeToFit>
             {expand ? 'Tutup' : 'Lihat'}
           </Text>
@@ -114,12 +115,14 @@ const TransactionDetailScreen: FC<Props> = ({route}: Props) => {
             <InfoLabel
               title={'STATUS'}
               value={isSuccess ? 'Berhasil' : 'Pengecekan'}
-              valueStyle={[FontWeight.bold]}
+              // valueStyle={[FontWeight.bold]}
             />
-            {isSuccess && (<InfoLabel
-              title={'WAKTU TRANSFER'}
-              value={formatDateTime(transaction.completed_at)}
-            />)}
+            {isSuccess && (
+              <InfoLabel
+                title={'WAKTU TRANSFER'}
+                value={formatDateTime(transaction.completed_at)}
+              />
+            )}
           </View>
         </View>
       )}
@@ -145,13 +148,17 @@ const styles = StyleSheet.create({
     padding: AppThemes.SPACE.XL,
   },
   iconCopy: {
-    width: 20,
-    height: 20,
+    width: scaleWidth(18),
+    height: scaleWidth(18),
     tintColor: AppColors.primary,
     marginLeft: AppThemes.SPACE.SM,
   },
   content: {
     flexDirection: 'row',
     marginVertical: AppThemes.SPACE.MD,
+  },
+  toggle: {
+    // paddingBlock: AppThemes.SPACE.MD,
+    paddingLeft: AppThemes.SPACE.MD,
   },
 });

@@ -1,11 +1,13 @@
+import {scaleWidth} from '../utils/responsive';
 
 export const AppThemes = {
-    SPACE: {
-        XS: 4,
-        SM: 6,
-        MD: 10,
-        LG: 14,
-        XL: 20,
-        BOTTOM_SCROLL: 100
-    },
-}
+  SPACE: {
+    XXS: scaleWidth(2),
+    XS: scaleWidth(4),
+    SM: scaleWidth(6),
+    MD: scaleWidth(10),
+    LG: scaleWidth(14),
+    XL: scaleWidth(20),
+    BOTTOM_SCROLL: scaleWidth(100),
+  },
+};
