@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {currencyFormat} from '@utils/stringUtils';
+import {currencyFormat} from '@utils/utils';
 import AppStyles  from '@themes/styles';
 import {formatDate} from '@utils/dateFormat';
 import AppThemes from '@themes/themes';

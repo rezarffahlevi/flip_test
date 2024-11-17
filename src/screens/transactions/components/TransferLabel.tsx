@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {titleCase} from '@utils/stringUtils';
+import {titleCase} from '@utils/utils';
 import AppAssets from '@assets/assets';
 import AppThemes from '@themes/themes';
 import {scaleWidth} from '@utils/responsive';

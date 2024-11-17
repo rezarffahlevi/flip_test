@@ -1,5 +1,4 @@
-
-import React, {FC} from 'react';
+import React, {FC, useCallback, useState} from 'react';
 import {
   Image,
   Pressable,
@@ -9,8 +8,9 @@ import {
   View,
 } from 'react-native';
 import AppAssets from '@assets/assets';
-import AppStyles  from '@themes/styles';
+import AppStyles from '@themes/styles';
 import AppThemes from '@themes/themes';
+import {debounce} from '@utils/utils';
 
 type Props = {
   onPressSorting: () => void;
@@ -18,7 +18,27 @@ type Props = {
   sortBy: string | undefined;
   keyword: string | undefined;
 };
-const Searchbar: FC<Props> = ({onPressSorting, onSearch, sortBy, keyword}: Props) => {
+const Searchbar: FC<Props> = ({
+  onPressSorting,
+  onSearch,
+  sortBy,
+  keyword,
+}: Props) => {
+  const [text, setText] = useState<string>('');
+
+  const handleSearch = useCallback(
+    (text: string) => {
+      setText(text);
+      debounceSearch(text);
+    },
+    [text],
+  );
+
+  const debounceSearch = useCallback(
+    debounce((nextValue: string) => onSearch(nextValue), 450),
+    [],
+  );
+
   return (
     <View style={styles.searchContainer}>
       <View style={[AppStyles.row, styles.search]}>
@@ -28,12 +48,17 @@ const Searchbar: FC<Props> = ({onPressSorting, onSearch, sortBy, keyword}: Props
           placeholder="Cari nama, bank, atau nominal"
           placeholderTextColor={AppThemes.colors.grey}
           numberOfLines={1}
-          onChangeText={onSearch}
-          value={keyword}
+          onChangeText={handleSearch}
+          value={text}
         />
       </View>
       <Pressable onPress={onPressSorting} style={[AppStyles.row, styles.sort]}>
-        <Text style={[AppStyles.primary, AppThemes.fontSize.h7, AppThemes.fontWeight.bold]}>
+        <Text
+          style={[
+            AppStyles.primary,
+            AppThemes.fontSize.h7,
+            AppThemes.fontWeight.bold,
+          ]}>
           {sortBy}
         </Text>
         <Image source={AppAssets.ic_arrow_down} style={styles.arrowIcon} />
@@ -71,7 +96,7 @@ const styles = StyleSheet.create({
   },
   sort: {
     flex: 3,
-    justifyContent:'flex-end'
+    justifyContent: 'flex-end',
   },
   arrowIcon: {
     width: 24,

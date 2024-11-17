@@ -109,6 +109,15 @@ const TransactionScreen: FC<Props> = ({}: Props) => {
     fetchData();
   }, []);
 
+  const _onSearch = useCallback(
+    (keyword: string) => {
+      setQueryParams(prev => {
+        return {...prev, keyword: keyword};
+      });
+    },
+    [queryParams],
+  );
+
   const _renderTransactionItem = ({item, index}: any) => {
     return (
       <TransactionCard
@@ -141,11 +150,7 @@ const TransactionScreen: FC<Props> = ({}: Props) => {
     <View style={styles.container}>
       <Searchbar
         onPressSorting={() => setShowSorting(true)}
-        onSearch={val =>
-          setQueryParams(prev => {
-            return {...prev, keyword: val};
-          })
-        }
+        onSearch={_onSearch}
         keyword={queryParams.keyword}
         sortBy={SORT_BY.find(d => d.value == queryParams.sortBy)?.label}
       />

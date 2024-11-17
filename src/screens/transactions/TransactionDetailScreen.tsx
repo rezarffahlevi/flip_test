@@ -15,7 +15,7 @@ import AppThemes from '@themes/themes';
 import AppAssets from '@assets/assets';
 import AppStyles from '@themes/styles';
 import {TransactionItem} from './TransactionScreen';
-import {currencyFormat} from '@utils/stringUtils';
+import {currencyFormat} from '@utils/utils';
 import {formatDate, formatDateTime} from '@utils/dateFormat';
 import {scaleWidth} from '@utils/responsive';
 
