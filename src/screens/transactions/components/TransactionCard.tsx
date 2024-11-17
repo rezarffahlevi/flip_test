@@ -1,13 +1,11 @@
 import {FC} from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import {AppColors} from '../../../themes/colors';
-import {currencyFormat} from '../../../utils/stringUtils';
-import {AppStyles} from '../../../themes/styles';
-import {formatDate} from '../../../utils/dateFormat';
-import { AppThemes } from '../../../themes/themes';
-import { TransferLabel } from './TransferLabel';
-import { StatusLabel } from './StatusLabel';
-import FontSize from '../../../themes/fontSize';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {currencyFormat} from '@utils/stringUtils';
+import {AppStyles} from '@themes/styles';
+import {formatDate} from '@utils/dateFormat';
+import {AppThemes} from '@themes/themes';
+import {TransferLabel} from './TransferLabel';
+import {StatusLabel} from './StatusLabel';
 
 type Props = {
   senderBank: string;
@@ -32,14 +30,23 @@ export const TransactionCard: FC<Props> = ({
 }) => {
   return (
     <Pressable style={styles.container} onPress={onPress} disabled={disabled}>
-      <View style={[styles.flagStatus, status == 'SUCCESS' && styles.flagSuccess] } />
+      <View
+        style={[styles.flagStatus, status == 'SUCCESS' && styles.flagSuccess]}
+      />
       <View style={styles.wrapper}>
-        <TransferLabel senderBank={senderBank} beneficiaryBank={beneficiaryBank} />
-        <Text style={[FontSize.h4, styles.name]}>{beneficiaryName?.toUpperCase()}</Text>
+        <TransferLabel
+          senderBank={senderBank}
+          beneficiaryBank={beneficiaryBank}
+        />
+        <Text style={[AppThemes.fontSize.h4, styles.name]}>
+          {beneficiaryName?.toUpperCase()}
+        </Text>
         <View style={AppStyles.row}>
-          <Text adjustsFontSizeToFit style={[FontSize.h5]}>{currencyFormat(amount)}</Text>
+          <Text adjustsFontSizeToFit style={[AppThemes.fontSize.h5]}>
+            {currencyFormat(amount)}
+          </Text>
           <View style={styles.dot} />
-          <Text style={[FontSize.h5]}>{formatDate(date)}</Text>
+          <Text style={[AppThemes.fontSize.h5]}>{formatDate(date)}</Text>
         </View>
       </View>
       <StatusLabel status={status} />
@@ -50,41 +57,41 @@ export const TransactionCard: FC<Props> = ({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    marginBottom: AppThemes.SPACE.MD,
-    borderRadius: AppThemes.SPACE.MD,
+    marginBottom: AppThemes.space.MD,
+    borderRadius: AppThemes.space.MD,
     paddingLeft: 24,
     justifyContent: 'center',
     flex: 1,
   },
   wrapper: {
-    paddingBlock: AppThemes.SPACE.MD,
+    paddingBlock: AppThemes.space.MD,
   },
   flagStatus: {
     width: 7,
     height: '100%',
-    borderTopLeftRadius: AppThemes.SPACE.MD,
-    borderBottomLeftRadius: AppThemes.SPACE.MD,
-    backgroundColor: AppColors.primary,
+    borderTopLeftRadius: AppThemes.space.MD,
+    borderBottomLeftRadius: AppThemes.space.MD,
+    backgroundColor: AppThemes.colors.primary,
     position: 'absolute',
     left: 0,
     top: 0,
     bottom: 0,
   },
   flagSuccess: {
-    backgroundColor: AppColors.secondary,
+    backgroundColor: AppThemes.colors.secondary,
   },
   iconTf: {
     width: 18,
     height: 14,
   },
   dot: {
-    height: AppThemes.SPACE.SM,
-    width: AppThemes.SPACE.SM,
-    borderRadius: AppThemes.SPACE.MD,
-    backgroundColor: AppColors.black,
-    marginInline: AppThemes.SPACE.SM,
+    height: AppThemes.space.SM,
+    width: AppThemes.space.SM,
+    borderRadius: AppThemes.space.MD,
+    backgroundColor: AppThemes.colors.black,
+    marginInline: AppThemes.space.SM,
   },
   name: {
-    marginBlock: AppThemes.SPACE.XS,
+    marginBlock: AppThemes.space.XS,
   },
 });

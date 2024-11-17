@@ -1,3 +1,5 @@
+
+import {FC} from 'react';
 import {
   Image,
   Pressable,
@@ -6,13 +8,9 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {AppAssets} from '../../../assets/assets';
-import {FontWeight} from '../../../themes/fontWeight';
-import FontSize from '../../../themes/fontSize';
-import {AppStyles} from '../../../themes/styles';
-import {AppColors} from '../../../themes/colors';
-import {FC} from 'react';
-import {AppThemes} from '../../../themes/themes';
+import {AppAssets} from '@assets/assets';
+import {AppStyles} from '@themes/styles';
+import {AppThemes} from '@themes/themes';
 
 type Props = {
   onPressSorting: () => void;
@@ -26,16 +24,16 @@ export const Searchbar: FC<Props> = ({onPressSorting, onSearch, sortBy, keyword}
       <View style={[AppStyles.row, styles.search]}>
         <Image source={AppAssets.ic_search} style={styles.searchIcon} />
         <TextInput
-          style={[styles.textInput, FontSize.h7]}
+          style={[styles.textInput, AppThemes.fontSize.h7]}
           placeholder="Cari nama, bank, atau nominal"
-          placeholderTextColor={AppColors.grey}
+          placeholderTextColor={AppThemes.colors.grey}
           numberOfLines={1}
           onChangeText={onSearch}
           value={keyword}
         />
       </View>
       <Pressable onPress={onPressSorting} style={[AppStyles.row, styles.sort]}>
-        <Text style={[AppStyles.primary, FontSize.h7, FontWeight.bold]}>
+        <Text style={[AppStyles.primary, AppThemes.fontSize.h7, AppThemes.fontWeight.bold]}>
           {sortBy}
         </Text>
         <Image source={AppAssets.ic_arrow_down} style={styles.arrowIcon} />
@@ -46,12 +44,12 @@ export const Searchbar: FC<Props> = ({onPressSorting, onSearch, sortBy, keyword}
 
 const styles = StyleSheet.create({
   searchContainer: {
-    backgroundColor: AppColors.white,
-    borderRadius: AppThemes.SPACE.SM,
-    paddingRight: AppThemes.SPACE.XS,
-    paddingLeft: AppThemes.SPACE.MD,
-    paddingVertical: AppThemes.SPACE.MD,
-    marginBottom: AppThemes.SPACE.MD,
+    backgroundColor: AppThemes.colors.white,
+    borderRadius: AppThemes.space.SM,
+    paddingRight: AppThemes.space.XS,
+    paddingLeft: AppThemes.space.MD,
+    paddingVertical: AppThemes.space.MD,
+    marginBottom: AppThemes.space.MD,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -59,10 +57,10 @@ const styles = StyleSheet.create({
   searchIcon: {
     width: 24,
     height: 24,
-    tintColor: AppColors.grey,
+    tintColor: AppThemes.colors.grey,
   },
   textInput: {
-    color: AppColors.black,
+    color: AppThemes.colors.black,
     marginLeft: 2,
     flex: 1,
   },
@@ -76,6 +74,6 @@ const styles = StyleSheet.create({
   arrowIcon: {
     width: 24,
     height: 24,
-    tintColor: AppColors.primary,
+    tintColor: AppThemes.colors.primary,
   },
 });

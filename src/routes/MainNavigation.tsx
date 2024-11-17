@@ -1,18 +1,18 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import TransactionScreen from '../screens/transactions/TransactionScreen';
 import {createStaticNavigation} from '@react-navigation/native';
-import TransactionDetailScreen from '../screens/transactions/TransactionDetailScreen';
-import { AppColors } from '../themes/colors';
+import TransactionDetailScreen from '@screens/transactions/TransactionDetailScreen';
+import TransactionScreen from '@screens/transactions/TransactionScreen';
+import { AppThemes } from '@themes/themes';
 
 const RootStack = createNativeStackNavigator({
   initialRouteName: 'Transaction',
   screenOptions: {
     statusBarStyle: 'light',
     headerStyle:{
-      backgroundColor: AppColors.primary, 
+      backgroundColor: AppThemes.colors.primary, 
     },
-    headerTitleStyle: {color: AppColors.white},
-    headerTintColor: AppColors.white,
+    headerTitleStyle: {color: AppThemes.colors.white},
+    headerTintColor: AppThemes.colors.white,
     animation: 'slide_from_left'
   },
   screens: {
@@ -30,5 +30,5 @@ const RootStack = createNativeStackNavigator({
     }
   },
 });
-const MainNavigation = createStaticNavigation(RootStack);
-export default MainNavigation;
+
+export default createStaticNavigation(RootStack);

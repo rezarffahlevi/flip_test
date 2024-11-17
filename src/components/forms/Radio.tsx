@@ -1,7 +1,6 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {AppColors} from '../../themes/colors';
 import {FC} from 'react';
-import { AppThemes } from '../../themes/themes';
+import { AppThemes } from '@themes/themes';
 
 type Props = {
   label: string;
@@ -25,19 +24,19 @@ const styles = StyleSheet.create({
   radioIcon: {
     width: 16,
     height: 16,
-    borderRadius: AppThemes.SPACE.MD,
-    backgroundColor: AppColors.white,
-    borderColor: AppColors.primary,
+    borderRadius: AppThemes.space.MD,
+    backgroundColor: AppThemes.colors.white,
+    borderColor: AppThemes.colors.primary,
     borderWidth: 2,
-    marginRight: AppThemes.SPACE.MD,
-    marginBlock: AppThemes.SPACE.MD,
+    marginRight: AppThemes.space.MD,
+    marginBlock: AppThemes.space.MD,
     justifyContent: 'center',
     alignItems: 'center',
   },
   radioIconSelected: {
     width: 8,
     height: 8,
-    borderRadius: AppThemes.SPACE.MD,
-    backgroundColor: AppColors.primary,
+    borderRadius: AppThemes.space.MD,
+    backgroundColor: AppThemes.colors.primary,
   },
 });

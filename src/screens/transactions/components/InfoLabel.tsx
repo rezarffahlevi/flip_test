@@ -1,6 +1,5 @@
+import { AppThemes } from '@themes/themes';
 import {StyleSheet, Text, View} from 'react-native';
-import FontSize from '../../../themes/fontSize';
-import {FontWeight} from '../../../themes/fontWeight';
 
 type Props = {
   title: string;
@@ -10,8 +9,8 @@ type Props = {
 export const InfoLabel = ({title, value, valueStyle}: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={[FontSize.h5, FontWeight.bold]}>{title}</Text>
-      <Text style={[FontSize.h5, FontWeight.regular, valueStyle]}>{value}</Text>
+      <Text style={[AppThemes.fontSize.h5, AppThemes.fontWeight.bold]}>{title}</Text>
+      <Text style={[AppThemes.fontSize.h5, AppThemes.fontWeight.regular, valueStyle]}>{value}</Text>
     </View>
   );
 };
