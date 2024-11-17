@@ -7,7 +7,7 @@ type Props = {
   selected: boolean;
   onPress: () => void;
 };
-export const Radio: FC<Props> = ({label, selected, onPress}: Props) => {
+const Radio: FC<Props> = ({label, selected, onPress}: Props) => {
   return (
     <Pressable style={styles.radioContainer} onPress={onPress}>
       <View style={styles.radioIcon}>{selected && (<View style={styles.radioIconSelected}/>)}</View>
@@ -15,7 +15,7 @@ export const Radio: FC<Props> = ({label, selected, onPress}: Props) => {
     </Pressable>
   );
 };
-
+export default Radio;
 const styles = StyleSheet.create({
   radioContainer: {
     flexDirection: 'row',

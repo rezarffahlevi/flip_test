@@ -1,7 +1,8 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {Modal, Pressable, StyleSheet, View} from 'react-native';
-import {Radio} from '@components/forms/Radio';
 import AppThemes from '@themes/themes';
+
+const Radio = React.lazy(() => import('@components/forms/Radio'));
 
 type Props = {
   visible: boolean;
