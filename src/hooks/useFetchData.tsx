@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {BASE_URL, REQ_STATUS} from '@utils/constants';
-import { objectToQueryParams } from '@utils/stringUtils';
+import { objectToQueryParams } from '@utils/utils';
 
 export interface IFetchData {
   loading?: boolean;

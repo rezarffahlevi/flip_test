@@ -1,15 +1,17 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {SORT_BY} from '@utils/constants';
 import AppThemes from '@themes/themes';
 import useFetchData from '@hooks/useFetchData';
+import Shimmer from '@components/shimmer/Shimmer';
 
-const Shimmer = React.lazy(() => import('@components/shimmer/Shimmer'));
 const SortModal = React.lazy(() => import('./components/SortModal'));
 const Searchbar = React.lazy(() => import('./components/Searchbar'));
-const TransactionCard = React.lazy(() => import('./components/TransactionCard'));
+const TransactionCard = React.lazy(
+  () => import('./components/TransactionCard'),
+);
 
 type Props = {};
 export declare interface TransactionItem {
@@ -47,57 +49,74 @@ const TransactionScreen: FC<Props> = ({}: Props) => {
     fetchData();
   }, []);
 
-  const getRenderedData = (resData: any, queryParams: QueryParam) => {
-    const arrayData: TransactionItem[] = Object.values(resData ?? {});
-    let result = [...arrayData];
-    // sorting
-    switch (queryParams.sortBy) {
-      case 'a-z':
-        result.sort((a, b) =>
-          a.beneficiary_name.localeCompare(b.beneficiary_name),
-        );
-        break;
-      case 'z-a':
-        result.sort((a, b) =>
-          b.beneficiary_name.localeCompare(a.beneficiary_name),
-        );
-        break;
-      case 'date-desc':
-        result.sort(
-          (a, b) =>
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
-        );
-        break;
-      case 'date-asc':
-        result.sort(
-          (a, b) =>
-            new Date(a.created_at).getTime() - new Date(b.created_at).getTime(),
-        );
-        break;
-      default:
-        result = Object.values(resData ?? {});
-        break;
-    }
-    // filtering
-    result = filterData(result, queryParams.keyword);
-    return result;
-  };
+  const getRenderedData = useCallback(
+    (resData: any, queryParams: QueryParam) => {
+      const arrayData: TransactionItem[] = Object.values(resData ?? {});
+      let result = [...arrayData];
+      // sorting
+      switch (queryParams.sortBy) {
+        case 'a-z':
+          result.sort((a, b) =>
+            a.beneficiary_name.localeCompare(b.beneficiary_name),
+          );
+          break;
+        case 'z-a':
+          result.sort((a, b) =>
+            b.beneficiary_name.localeCompare(a.beneficiary_name),
+          );
+          break;
+        case 'date-desc':
+          result.sort(
+            (a, b) =>
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime(),
+          );
+          break;
+        case 'date-asc':
+          result.sort(
+            (a, b) =>
+              new Date(a.created_at).getTime() -
+              new Date(b.created_at).getTime(),
+          );
+          break;
+        default:
+          result = Object.values(resData ?? {});
+          break;
+      }
+      // filtering
+      result = filterData(result, queryParams.keyword);
+      return result;
+    },
+    [data, queryParams],
+  );
 
-  const filterData = (searchData: TransactionItem[], keyword: string) => {
-    if (keyword === '') return searchData;
-    searchData = searchData.filter(
-      item =>
-        item.beneficiary_name.toLowerCase().includes(keyword.toLowerCase()) ||
-        item.beneficiary_bank.toLowerCase().includes(keyword.toLowerCase()) ||
-        item.sender_bank.toLowerCase().includes(keyword.toLowerCase()) ||
-        item.amount.toString().includes(keyword),
-    );
-    return searchData;
-  };
+  const filterData = useCallback(
+    (searchData: TransactionItem[], keyword: string) => {
+      if (keyword === '') return searchData;
+      searchData = searchData.filter(
+        item =>
+          item.beneficiary_name.toLowerCase().includes(keyword.toLowerCase()) ||
+          item.beneficiary_bank.toLowerCase().includes(keyword.toLowerCase()) ||
+          item.sender_bank.toLowerCase().includes(keyword.toLowerCase()) ||
+          item.amount.toString().includes(keyword),
+      );
+      return searchData;
+    },
+    [data, queryParams],
+  );
 
-  const _onRefresh = () => {
+  const _onRefresh = useCallback(() => {
     fetchData();
-  };
+  }, []);
+
+  const _onSearch = useCallback(
+    (keyword: string) => {
+      setQueryParams(prev => {
+        return {...prev, keyword: keyword};
+      });
+    },
+    [queryParams],
+  );
 
   const _renderTransactionItem = ({item, index}: any) => {
     return (
@@ -116,7 +135,7 @@ const TransactionScreen: FC<Props> = ({}: Props) => {
     );
   };
 
-  const _renderEmptyComponent = () => {
+  const _renderEmptyComponent = useCallback(() => {
     if (error)
       return (
         <View style={styles.container}>
@@ -125,17 +144,13 @@ const TransactionScreen: FC<Props> = ({}: Props) => {
       );
 
     return <View />;
-  };
+  }, [error, message]);
 
   return (
     <View style={styles.container}>
       <Searchbar
         onPressSorting={() => setShowSorting(true)}
-        onSearch={val =>
-          setQueryParams(prev => {
-            return {...prev, keyword: val};
-          })
-        }
+        onSearch={_onSearch}
         keyword={queryParams.keyword}
         sortBy={SORT_BY.find(d => d.value == queryParams.sortBy)?.label}
       />

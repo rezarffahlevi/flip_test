@@ -26,12 +26,30 @@ export function objectToQueryParams(
   params?: Record<string, any> | undefined,
 ): string {
   if (params)
-    return `?`+Object.entries(params)
-      .filter(([_, value]) => value !== undefined && value !== null) // Skip undefined or null values
-      .map(
-        ([key, value]) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
-      )
-      .join('&');
+    return (
+      `?` +
+      Object.entries(params)
+        .filter(([_, value]) => value !== undefined && value !== null) // Skip undefined or null values
+        .map(
+          ([key, value]) =>
+            `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
+        )
+        .join('&')
+    );
   else return '';
+}
+
+export function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  delay: number,
+): (...args: Parameters<T>) => void {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
 }
