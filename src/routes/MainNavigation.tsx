@@ -1,8 +1,10 @@
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createStaticNavigation} from '@react-navigation/native';
-import TransactionDetailScreen from '@screens/transactions/TransactionDetailScreen';
-import TransactionScreen from '@screens/transactions/TransactionScreen';
-import { AppThemes } from '@themes/themes';
+import AppThemes from '@themes/themes';
+
+const TransactionScreen = React.lazy(() => import('@screens/transactions/TransactionScreen'))
+const TransactionDetailScreen = React.lazy(() => import('@screens/transactions/TransactionDetailScreen'))
 
 const RootStack = createNativeStackNavigator({
   initialRouteName: 'Transaction',

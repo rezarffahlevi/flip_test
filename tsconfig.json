@@ -1,6 +1,7 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "module": "es2020",
     "baseUrl": "./", // Base directory for resolving paths
     "paths": {
       "@components/*": ["src/components/*"],

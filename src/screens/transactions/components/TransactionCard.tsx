@@ -1,11 +1,12 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {currencyFormat} from '@utils/stringUtils';
-import {AppStyles} from '@themes/styles';
+import AppStyles  from '@themes/styles';
 import {formatDate} from '@utils/dateFormat';
-import {AppThemes} from '@themes/themes';
-import {TransferLabel} from './TransferLabel';
-import {StatusLabel} from './StatusLabel';
+import AppThemes from '@themes/themes';
+
+const TransferLabel = React.lazy(() => import('./TransferLabel'));
+const StatusLabel = React.lazy(() => import('./StatusLabel'));
 
 type Props = {
   senderBank: string;
@@ -18,7 +19,7 @@ type Props = {
   disabled: boolean;
 };
 
-export const TransactionCard: FC<Props> = ({
+const TransactionCard: FC<Props> = ({
   senderBank,
   beneficiaryBank,
   beneficiaryName,
@@ -53,6 +54,8 @@ export const TransactionCard: FC<Props> = ({
     </Pressable>
   );
 };
+
+export default TransactionCard;
 
 const styles = StyleSheet.create({
   container: {

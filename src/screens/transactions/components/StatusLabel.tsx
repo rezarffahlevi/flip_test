@@ -1,11 +1,11 @@
 import {StyleSheet, Text} from 'react-native';
-import { AppThemes } from '@themes/themes';
+import AppThemes from '@themes/themes';
 
 type Props = {
   status: string;
   style?: React.CSSProperties | {},
 };
-export const StatusLabel = ({status, style}: Props) => {
+const StatusLabel = ({status, style}: Props) => {
   const _labelStatus = (status: string) => {
     switch (status) {
       case 'SUCCESS':
@@ -28,6 +28,8 @@ export const StatusLabel = ({status, style}: Props) => {
 
   return <Text style={[_labelStatus(status), style]} adjustsFontSizeToFit>{_statusWording(status)}</Text>;
 };
+
+export default StatusLabel;
 
 const styles = StyleSheet.create({
   successText: {

@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {AppColors} from './colors';
 
-export const AppStyles = StyleSheet.create({
+const AppStyles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 0,
@@ -27,3 +27,5 @@ export const AppStyles = StyleSheet.create({
     elevation: 2,
   },
 });
+
+export default AppStyles;

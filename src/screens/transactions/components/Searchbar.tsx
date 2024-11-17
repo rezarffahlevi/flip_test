@@ -8,9 +8,9 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {AppAssets} from '@assets/assets';
-import {AppStyles} from '@themes/styles';
-import {AppThemes} from '@themes/themes';
+import AppAssets from '@assets/assets';
+import AppStyles  from '@themes/styles';
+import AppThemes from '@themes/themes';
 
 type Props = {
   onPressSorting: () => void;
@@ -18,7 +18,7 @@ type Props = {
   sortBy: string | undefined;
   keyword: string | undefined;
 };
-export const Searchbar: FC<Props> = ({onPressSorting, onSearch, sortBy, keyword}: Props) => {
+const Searchbar: FC<Props> = ({onPressSorting, onSearch, sortBy, keyword}: Props) => {
   return (
     <View style={styles.searchContainer}>
       <View style={[AppStyles.row, styles.search]}>
@@ -41,6 +41,8 @@ export const Searchbar: FC<Props> = ({onPressSorting, onSearch, sortBy, keyword}
     </View>
   );
 };
+
+export default Searchbar;
 
 const styles = StyleSheet.create({
   searchContainer: {

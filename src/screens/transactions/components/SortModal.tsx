@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Modal, Pressable, StyleSheet, View} from 'react-native';
 import {Radio} from '@components/forms/Radio';
-import {AppThemes} from '@themes/themes';
+import AppThemes from '@themes/themes';
 
 type Props = {
   visible: boolean;
@@ -11,7 +11,7 @@ type Props = {
   data: {label: string; value: string | number}[];
 };
 
-export const SortModal: FC<Props> = ({
+const SortModal: FC<Props> = ({
   visible,
   data,
   selected,
@@ -39,6 +39,8 @@ export const SortModal: FC<Props> = ({
     </Modal>
   );
 };
+
+export default SortModal;
 
 const styles = StyleSheet.create({
   container: {

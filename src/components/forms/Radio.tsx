@@ -1,6 +1,6 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {FC} from 'react';
-import { AppThemes } from '@themes/themes';
+import AppThemes from '@themes/themes';
 
 type Props = {
   label: string;

@@ -1,4 +1,4 @@
-import { AppThemes } from '@themes/themes';
+import AppThemes from '@themes/themes';
 import {StyleSheet, Text, View} from 'react-native';
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   value: string;
   valueStyle?: React.CSSProperties | {};
 };
-export const InfoLabel = ({title, value, valueStyle}: Props) => {
+const InfoLabel = ({title, value, valueStyle}: Props) => {
   return (
     <View style={styles.container}>
       <Text style={[AppThemes.fontSize.h5, AppThemes.fontWeight.bold]}>{title}</Text>
@@ -14,6 +14,8 @@ export const InfoLabel = ({title, value, valueStyle}: Props) => {
     </View>
   );
 };
+
+export default InfoLabel;
 
 const styles = StyleSheet.create({
   container: {

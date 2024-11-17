@@ -1,10 +1,10 @@
 import {scaleWidth} from '@utils/responsive';
 import {AppColors} from './colors';
-import {AppFontWeight} from './fontWeight';
-import {AppFontSize} from './fontSize';
-import { AppStyles } from './styles';
+import AppFontWeight from './fontWeight';
+import AppFontSize from './fontSize';
+import AppStyles  from './styles';
 
-export const AppThemes = {
+const AppThemes = {
   space: {
     XXS: scaleWidth(2),
     XS: scaleWidth(4),
@@ -19,3 +19,5 @@ export const AppThemes = {
   fontSize: AppFontSize,
   style: AppStyles,
 };
+
+export default AppThemes;

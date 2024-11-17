@@ -1,15 +1,15 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {titleCase} from '@utils/stringUtils';
-import {AppAssets} from '@assets/assets';
-import {AppThemes} from '@themes/themes';
+import AppAssets from '@assets/assets';
+import AppThemes from '@themes/themes';
 import {scaleWidth} from '@utils/responsive';
-import {AppStyles} from '@themes/styles';
+import AppStyles  from '@themes/styles';
 
 type Props = {
   senderBank: string;
   beneficiaryBank: string;
 };
-export const TransferLabel = ({senderBank, beneficiaryBank}: Props) => {
+const TransferLabel = ({senderBank, beneficiaryBank}: Props) => {
   return (
     <View style={AppStyles.row}>
       <Text
@@ -26,6 +26,7 @@ export const TransferLabel = ({senderBank, beneficiaryBank}: Props) => {
     </View>
   );
 };
+export default TransferLabel;
 
 const styles = StyleSheet.create({
   iconTf: {

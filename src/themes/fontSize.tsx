@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
-import {AppFontWeight} from './fontWeight';
+import AppFontWeight from './fontWeight';
 import {responsiveFont} from '../utils/responsive';
 
-export const AppFontSize = StyleSheet.create({
+const AppFontSize = StyleSheet.create({
   h1: {fontSize: responsiveFont(32), lineHeight: 40, ...AppFontWeight.bold},
   h2: {fontSize: responsiveFont(28), lineHeight: 36, ...AppFontWeight.semibold},
   h3: {fontSize: responsiveFont(24), lineHeight: 32, ...AppFontWeight.semibold},
@@ -12,3 +12,5 @@ export const AppFontSize = StyleSheet.create({
   h7: {fontSize: responsiveFont(14), lineHeight: 20, ...AppFontWeight.regular},
   h8: {fontSize: responsiveFont(12), lineHeight: 18, ...AppFontWeight.light},
 });
+
+export default AppFontSize;

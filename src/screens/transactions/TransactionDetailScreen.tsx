@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
   Alert,
   Clipboard,
@@ -11,15 +11,16 @@ import {
   View,
 } from 'react-native';
 import {StaticScreenProps, useNavigation} from '@react-navigation/native';
-import {AppThemes} from '@themes/themes';
-import {AppAssets} from '@assets/assets';
-import {AppStyles} from '@themes/styles';
-import {TransferLabel} from './components/TransferLabel';
+import AppThemes from '@themes/themes';
+import AppAssets from '@assets/assets';
+import AppStyles  from '@themes/styles';
 import {TransactionItem} from './TransactionScreen';
-import {InfoLabel} from './components/InfoLabel';
 import {currencyFormat} from '@utils/stringUtils';
 import {formatDate, formatDateTime} from '@utils/dateFormat';
 import {scaleWidth} from '@utils/responsive';
+
+const TransferLabel = React.lazy(() => import('./components/TransferLabel'));
+const InfoLabel = React.lazy(() => import('./components/InfoLabel'));
 
 type Props = StaticScreenProps<{
   transaction: TransactionItem;
