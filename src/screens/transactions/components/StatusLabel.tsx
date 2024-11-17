@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   successText: {
     borderRadius: AppThemes.SPACE.SM,
     paddingHorizontal: AppThemes.SPACE.MD,
-    paddingVertical: AppThemes.SPACE.SM,
+    paddingVertical: AppThemes.SPACE.XXS,
     backgroundColor: AppColors.secondary,
     color: AppColors.white,
     fontWeight: 'bold',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: AppThemes.SPACE.SM,
     paddingHorizontal: AppThemes.SPACE.MD,
-    paddingVertical: AppThemes.SPACE.XS,
+    paddingVertical: AppThemes.SPACE.XXS,
     color: AppColors.black,
     fontWeight: 'bold',
     marginRight: AppThemes.SPACE.MD,

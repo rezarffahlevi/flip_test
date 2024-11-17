@@ -7,6 +7,7 @@ import {formatDate} from '../../../utils/dateFormat';
 import { AppThemes } from '../../../themes/themes';
 import { TransferLabel } from './TransferLabel';
 import { StatusLabel } from './StatusLabel';
+import FontSize from '../../../themes/fontSize';
 
 type Props = {
   senderBank: string;
@@ -34,11 +35,11 @@ export const TransactionCard: FC<Props> = ({
       <View style={[styles.flagStatus, status == 'SUCCESS' && styles.flagSuccess] } />
       <View style={styles.wrapper}>
         <TransferLabel senderBank={senderBank} beneficiaryBank={beneficiaryBank} />
-        <Text style={styles.name}>{beneficiaryName?.toUpperCase()}</Text>
+        <Text style={[FontSize.h4, styles.name]}>{beneficiaryName?.toUpperCase()}</Text>
         <View style={AppStyles.row}>
-          <Text adjustsFontSizeToFit>{currencyFormat(amount)}</Text>
+          <Text adjustsFontSizeToFit style={[FontSize.h5]}>{currencyFormat(amount)}</Text>
           <View style={styles.dot} />
-          <Text>{formatDate(date)}</Text>
+          <Text style={[FontSize.h5]}>{formatDate(date)}</Text>
         </View>
       </View>
       <StatusLabel status={status} />

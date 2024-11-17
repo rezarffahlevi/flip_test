@@ -10,8 +10,8 @@ type Props = {
 export const InfoLabel = ({title, value, valueStyle}: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={[FontSize.h6, FontWeight.bold]}>{title}</Text>
-      <Text style={[FontSize.h6, FontWeight.regular, valueStyle]}>{value}</Text>
+      <Text style={[FontSize.h5, FontWeight.bold]}>{title}</Text>
+      <Text style={[FontSize.h5, FontWeight.regular, valueStyle]}>{value}</Text>
     </View>
   );
 };
